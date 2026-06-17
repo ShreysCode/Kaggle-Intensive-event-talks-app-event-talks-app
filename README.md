@@ -31,6 +31,7 @@ BigQuery Release Pulse is a modern Flask-based web application that tracks, cate
 ```
 bq-releases-notes/
 ├── app.py                # Main Flask application and server entrypoint
+├── upload_drive.py       # Google Drive file upload utility
 ├── templates/
 │   └── index.html        # Main frontend HTML5 layout
 ├── static/
@@ -67,13 +68,34 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-*(If `requirements.txt` is missing, install the required packages manually: `pip install Flask requests beautifulsoup4`)*
 
 ### 4. Run the application
 ```bash
 python app.py
 ```
 The server will start at `http://localhost:5000`.
+
+---
+
+## 📤 Google Drive Upload Utility (`upload_drive.py`)
+
+A standalone script to upload local files directly to Google Drive.
+
+### Usage
+
+1. **Authentication**: Set up Google Application Default Credentials (ADC):
+   ```bash
+   gcloud auth application-default login
+   ```
+2. **Run script**:
+   ```bash
+   python3 upload_drive.py --file path/to/local/file.txt --name remote_name.txt --folder folder_id
+   ```
+
+Arguments:
+- `-f, --file` (Required): Path to the local file to upload.
+- `-n, --name` (Optional): Custom name for the file in Google Drive.
+- `-d, --folder` (Optional): ID of the destination Google Drive folder.
 
 ---
 
